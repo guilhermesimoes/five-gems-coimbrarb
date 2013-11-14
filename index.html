@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Shower Presentation Engine</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="stylesheets/shower/themes/ribbon/styles/screen.css">
+	<link rel="stylesheet" href="stylesheets/custom.css">
+	<link rel="stylesheet" href="stylesheets/prism.css">
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>Five Gems</h1>
+		<p>Guilherme Simões</p>
+	</header>
+
+	<!-- START -->
+	<section class="slide cover first-slide"><div>
+		<h2>Five Gems</h2>
+		<p>Brought to you by <a href="https://twitter.com/glitchdout">Guilherme Simões</a></p>
+		<img src="images/indy.png" alt="">
+	</div></section>
+
+	<section class="slide cover"><div>
+		<img src="images/office.png" alt="">
+	</div></section>
+
+	<!-- GEM 1 -->
+	<section class="slide"><div>
+		<h2>jquery-rails-cdn</h2>
+		<p>Adds CDN support to the jquery-rails gem.</p>
+		<img src="images/jquery-rails-cdn.png" alt="" class="centered-image">
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>jquery-rails-cdn</h2>
+<pre style="width: 804px;"><code class="language-ruby"># app/views/layouts/application.html.erb
+<%= javascript_include_tag "//ajax.googleapis.com/jquery.min.js" %>
+<%= javascript_include_tag "application" %></code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>jquery-rails-cdn</h2>
+<pre style="width: 804px;"><code class="language-ruby"># app/views/layouts/application.html.erb
+<%= jquery_include_tag :google %>
+<%= javascript_include_tag "application" %></code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>jquery-rails-cdn</h2>
+		<ul>
+			<li>Supports multiple CDNs (Google, Microsoft, jQuery.com, CloudFlare, Yandex).</li>
+			<li class="next">Automatically detects jQuery version via jquery-rails gem.</li>
+			<li class="next">Automatically fallbacks to jQuery bundled with jquery-rails when:
+				<ul>
+					<li class="next">You're on a development environment, so that you can work offline.</li>
+					<li class="next">The CDN is down or unreachable.</li>
+				</ul>
+			</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>CDN advantages</h2>
+		<ul>
+			<li><strong>Speed</strong>: Users will be able to download jQuery from the closest physical location.</li>
+			<li class="next"><strong>Caching</strong>: Users may not need to download jQuery at all due to wide usage of CDNs.</li>
+			<li class="next"><strong>Parallelism</strong>: Browsers have a limitation on how many connections can be made to a single host. Using a CDN for jQuery offloads a big one.</li>
+			<li class="next"><strong>Bandwidth</strong>: The amount of bandwidth used by your server is reduced. Basically, it's free bandwidth! Everybody likes free stuff.</li>
+		</ul>
+	</div></section>
+
+	<!-- GEM 2 -->
+	<section class="slide"><div>
+		<h2>http_accept_language</h2>
+	<p>Detects the user's preferred language sent in the "Accept-Language" HTTP header.</p>
+	<img src="images/i18n.png" alt="" class="centered-image">
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>http_accept_language</h2>
+<pre><code class="language-ruby">request.env["HTTP_ACCEPT_LANGUAGE"]
+# => en-GB,en;q=0.8,en-US;q=0.6,pt-PT;q=0.4,pt;q=0.2
+http_accept_language.user_preferred_languages
+# => ["en-GB", "en", "en-US", "pt-PT", "pt"]
+available = I18n.available_locales
+# => [:en, :pt]
+http_accept_language.preferred_language_from(available)
+# => "en"</code></pre>
+	</div></section>
+
+	<!-- GEM 3 -->
+	<section class="slide"><div>
+		<h2>fastimage</h2>
+		<p>Finds the size or type of an image given its URL by fetching as little as needed.</p>
+		<img src="images/roadrunner.png" alt="" class="centered-image">
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>fastimage</h2>
+<pre><code class="language-ruby">FastImage.size("http://fake.url/funny.gif")
+# => [300, 50] # width, height
+FastImage.type("http://fake.url/png-image-with-no-extension")
+# => :png
+FastImage.size("http://fake.url/large-image-that-causes-DOS.jpg",
+  raise_on_failure: true, timeout: 0.5)
+# => FastImage::ImageFetchFailure: FastImage::ImageFetchFailure</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>fastimage</h2>
+		<ul>
+			<li>Supports multiple image types (GIF, JPEG, PNG, TIFF, BMP).</li>
+			<li class="next">Follows up to 4 HTTP redirects to get the image.</li>
+			<li class="next">Works with local files.</li>
+		</ul>
+	</div></section>
+
+	<!-- GEM 4 -->
+	<section class="slide"><div>
+		<h2>omniauth</h2>
+	<p>Provides a standardized interface to many different authentication providers such as Facebook and OpenID. Also supports a traditional strategy using username and password.</p>
+	<img src="images/lock-icon.png" alt="" class="centered-image">
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>omniauth</h2>
+<pre><code class="language-ruby">use OmniAuth::Builder do
+  provider :github, "GITHUB_KEY", "GITHUB_SECRET"
+end</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>omniauth</h2>
+<pre><code class="language-ruby"># some_view.html.erb
+<%= link_to "Login with GitHub", "/auth/github" %></code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>omniauth</h2>
+<pre><code class="language-ruby">get "/auth/:provider/callback" do
+  omniauth = env["omniauth.auth"]
+  raise omniauth.to_yaml
+end</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>omniauth</h2>
+<pre><code class="language-ruby">provider: "github"
+uid: "531168"
+info:
+  nickname: "GuilhermeSimoes"
+  email: "guilherme.rdems@gmail.com"
+  name: "Guilherme Simões"
+  image: "https://secure.gravatar.com/avatar/480fec4ec9bf207c739b4bd38ea98aec?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"
+  urls:
+    GitHub: "https://github.com/GuilhermeSimoes"
+extra:</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>omniauth</h2>
+<pre><code class="language-ruby">get "/auth/failure" do
+  flash[:notice] = params[:message]
+  redirect_to "/you-suck-for-not-logging-in-with-GitHub"
+end</code></pre>
+	</div></section>
+
+	<!-- GEM 5 -->
+	<section class="slide"><div>
+		<h2>figaro</h2>
+		<p>Helps configure Rails apps, especially open source Rails apps.</p>
+		<img src="images/preferences-icon.png" alt="" class="centered-image">
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro</h2>
+<pre><code class="language-bash">$ rails generate figaro:install
+# Creates a YAML config file and adds it to .gitignore</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro</h2>
+<pre><code class="language-ruby"># config/application.yml
+HELLO: "world"
+development:
+  HELLO: "developers"
+production:
+  HELLO: "users"</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro</h2>
+<pre><code class="language-ruby"># config/environments/development.rb
+config.action_mailer.default_url_options = {
+  host: "localhost:3000"
+}
+
+# config/environments/production.rb
+config.action_mailer.default_url_options = {
+  host: "example.com"
+}</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro</h2>
+<pre><code class="language-ruby"># config/application.rb
+config.action_mailer.default_url_options = {
+  host: ENV["MAILER_HOST"]
+}</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro</h2>
+<pre><code class="language-ruby"># config/environments/production.rb
+config.action_mailer.smtp_settings = {
+  user_name: ENV["EMAIL_USER_NAME"],
+  password: ENV["EMAIL_PASSWORD"]
+}</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro</h2>
+<pre><code class="language-ruby"># config/application.yml
+MAILER_HOST: "localhost:3000"
+production:
+  MAILER_HOST: "example.com"
+
+  EMAIL_PASSWORD: "super-difficult-password"
+  EMAIL_USER_NAME: "admin"</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro</h2>
+<pre><code class="language-ruby"># config/initializers/omniauth.rb
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :facebook, ENV["FACEBOOK_KEY"], ENV["FACEBOOK_SECRET"]
+  provider :google_oauth2, ENV["GOOGLE_KEY"], ENV["GOOGLE_SECRET"]
+  provider :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_SECRET"]
+end</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro</h2>
+<pre><code class="language-ruby"># config/initializers/secret_token.rb
+YourApp::Application.config.secret_token = ENV["SECRET_TOKEN"]</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro</h2>
+<span class="line-wrap"><span class="line"></span></span>
+<pre><code class="language-bash">$ heroku config:set S3_KEY=totallyrandomstring
+$ heroku config:set S3_SECRET=classified
+$ heroku config:set PUSHER_KEY=nopenopenopenopenope
+$ heroku config:set PUSHER_SECRET=topsecret
+$ heroku config:set PUSHER_APP_ID=imoutoffunnyideas
+...</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro</h2>
+<span class="line-wrap"><span class="line"></span></span>
+<pre><code class="language-bash">$ rake figaro:heroku
+# One command to push ENV variables to Heroku</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>figaro alternatives</h2>
+		<ul>
+			<li>dotenv (used by capistrano)</li>
+			<li class="next">heroku-config (used by foreman)</li>
+			<li class="next">... but why pick another gem when Figaro has such a cute mascot?
+				<img src="images/figaro-mascot.png" alt="" class="figaro-mascot">
+			</li>
+		</ul>
+	</div></section>
+
+	<!-- END -->
+	<section class="slide cover"><div>
+		<img src="images/ruby-toolbox.png" alt="">
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Other Resources</h2>
+		<ul>
+			<li><a href="http://www.paulirish.com/2010/the-protocol-relative-url/">The Protocol-relative URL</a></li>
+			<li><a href="http://www.hanselman.com/blog/CDNsFailButYourScriptsDontHaveToFallbackFromCDNToLocalJQuery.aspx">CDNs fail, but your scripts don't have to - fallback from CDN to local jQuery</a></li>
+			<li><a href="http://codeascraft.com/2011/10/21/localizing-logically-for-a-global-marketplace/">Localizing Logically for a Global Marketplace</a></li>
+			<li><a href="http://blog.mailchimp.com/social-login-buttons-arent-worth-it/">Social Login Buttons Aren’t Worth It</a></li>
+			<li><a href="http://railsapps.github.io/rails-environment-variables.html">Rails Environment Variables</a></li>
+		</ul>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Thanks!</h2>
+	</div></section>
+
+	<p class="badge"><a href="https://github.com/GuilhermeSimoes/five-gems">Fork me on Github</a></p>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"><div></div></div>
+	<script src="javascripts/shower.min.js"></script>
+	<script src="javascripts/prism.js"></script>
+	<!-- Copyright © 2013 Yours Truly, Famous Inc. -->
+	<!-- Photos by John Carey, fiftyfootshadows.net -->
+</body>
+</html>

@@ -1,0 +1,29 @@
+.slide.cover img {
+	width: 100%;
+}
+
+.first-slide h2 {
+	margin: 30px 0 0 0;
+	color: #FFF;
+	font-size: 70px;
+}
+
+.first-slide p {
+	margin-top: 10px;
+	color: #FFF;
+	font-style: italic;
+	font-size: 20px;
+}
+
+.first-slide p a {
+	color: #FFF;
+}
+
+.centered-image {
+	display: block;
+	margin: 0 auto;
+}
+
+.figaro-mascot {
+	padding-left: 50px;
+}
