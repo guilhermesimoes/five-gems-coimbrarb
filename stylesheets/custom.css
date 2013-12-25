@@ -27,3 +27,7 @@
 .figaro-mascot {
 	padding-left: 50px;
 }
+
+pre {
+	overflow: hidden !important;
+}
